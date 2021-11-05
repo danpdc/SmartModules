@@ -1,0 +1,1 @@
+# cwk.MinimalApis.SmartModules
