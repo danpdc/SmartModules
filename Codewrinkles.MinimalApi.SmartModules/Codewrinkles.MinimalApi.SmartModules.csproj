@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.4</PackageVersion>
+        <Title>Codewrinkles.MinimalApi.SmartModules</Title>
+        <Authors>Dan Patrascu-Baba</Authors>
+        <Description>Extends .NET 6 Minimal APIs to support automatic module registrations. You can think about modules like a set of self contained functionalities that should be able to work in complete isolation (similar to Angular modules). SmartModules provides support for automatic module registration, dependency injection in your module class constructors.</Description>
+        <PackageProjectUrl>https://github.com/danpdc/cwk.MinimalApis.SmartModules</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/danpdc/cwk.MinimalApis.SmartModules</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.0-rc.2.21480.5" />
+    </ItemGroup>
+
+</Project>

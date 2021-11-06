@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codewrinkles.MinimalApi.SmartModules", "Codewrinkles.MinimalApi.SmartModules\Codewrinkles.MinimalApi.SmartModules.csproj", "{BCF91398-C0F4-4FBB-9F85-8762CE59373A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCF91398-C0F4-4FBB-9F85-8762CE59373A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF91398-C0F4-4FBB-9F85-8762CE59373A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF91398-C0F4-4FBB-9F85-8762CE59373A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF91398-C0F4-4FBB-9F85-8762CE59373A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
