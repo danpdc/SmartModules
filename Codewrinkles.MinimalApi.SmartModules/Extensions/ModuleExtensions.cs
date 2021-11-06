@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions
+namespace Codewrinkles.MinimalApi.SmartModules.Extensions
 {
     public static class ModuleExtensions
     {
@@ -27,7 +27,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensio
         internal static WebApplication MapEndpoints(this WebApplication app)
         {
             var loggerFactory = app.Services.GetService<ILoggerFactory>();
-            var logger = loggerFactory!.CreateLogger(typeof(WebApplicationExtensions));
+            var logger = loggerFactory!.CreateLogger(typeof(WebApplicationExtensions.WebApplicationExtensions));
             foreach (var module in _modules!)
             {
                 logger.LogInformation("Registering module: {Module}", module.UnderlyingSystemType.Name);
@@ -35,8 +35,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensio
                 var instance = app.Services.GetRequiredService(serviceType) as IModule;
                 instance!.MapEndpointDefinitions(app);
             }
-
-
+            
             return app;
         }
 

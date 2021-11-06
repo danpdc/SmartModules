@@ -6,7 +6,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensio
 {
     public static class WebApplicationExtensions
     {
-        public static WebApplication UseSmartModules(this WebApplication app, Type type)
+        public static WebApplication UseSmartModules(this WebApplication app)
         {
             app.MapEndpoints();
             return app;
