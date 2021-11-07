@@ -11,7 +11,6 @@ namespace Sample.Modules
         {
             app.MapHead("/api", () => "Response to HEAD method").WithName("Head").WithDisplayName("Sample tests");
             app.MapOptions("/api",() => "Response to OPTIONS method").WithName("Options").WithDisplayName("Sample tests");
-            app.MapTrace("/api", () => "Response to TRACE method").WithName("Trace").WithDisplayName("Sample tests");
             return app;
         }
     }
