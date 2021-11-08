@@ -21,6 +21,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Codewrinkles.MinimalApi.SmartModules.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Codewrinkles.MinimalApi.SmartModules.csproj --no-build --verbosity normal
