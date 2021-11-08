@@ -1,3 +1,5 @@
+![Build status](https://github.com/github/docs/actions/workflows/dotnet.yml/badge.svg)
+
 # SmartModules for .Net 6 minimal API
 
 SmartModules is a thin library that helps you to modularize your .NET 6 minimal APIs by introducing the concept of auto-registering modules. Your module classes just need to implement the `IModule` interface and all your endpoints will be registered automatically at startup. This helps you to keep your `Program.cs` file as clean as possible and it also opens the door to easily transition to a vertical slices type of architecture. 
