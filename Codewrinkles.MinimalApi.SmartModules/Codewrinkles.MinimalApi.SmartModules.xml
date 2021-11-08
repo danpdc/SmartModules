@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Codewrinkles.MinimalApi.SmartModules</name>
+    </assembly>
+    <members>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapHead(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Maps a HEAD request.
+            </summary>
+            <param name="endpoints"></param>
+            <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
+            <param name="handler">The handler responsible to service the request and generate a response</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapOptions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)" -->
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.ServiceCollectionExtensions.AddSmartModules(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type)">
+            <summary>
+            Adds smart module services to the DI container
+            </summary>
+            <param name="services"></param>
+            <param name="type">Any type from the assembly where Smart Modules should scan for your modules</param>
+            <returns></returns>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.WebApplicationExtensions.UseSmartModules(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Adds all the endpoints discovered in modules end endpoint definitions to the <see cref="T:Microsoft.AspNetCore.Builder.WebApplication"/> pipeline.
+            It also adds smart modules middleware to the middleware pipeline
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.IEndpointDefinition">
+            <summary>
+            Marker interface used to identify places where your endpoint definitions might be
+            </summary>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.IModule">
+            <summary>
+            Base interface that defines what a smart module is
+            </summary>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.IModule.MapEndpointDefinitions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Automatically registers endpoints in the discovered modules
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> instance where endpoint registrations happen.
+            </param>
+            <returns>Returns back instance of <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> passed in, after all registrations have been applied</returns>
+        </member>
+    </members>
+</doc>

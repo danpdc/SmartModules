@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.0-rc.2.21480.5" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.0" />
     </ItemGroup>
 
 </Project>
