@@ -1,4 +1,4 @@
-![Build status](https://github.com/github/docs/actions/workflows/dotnet.yml/badge.svg)
+![Build status](https://github.com/danpdc/SmartModules/actions/workflows/dotnet.yml/badge.svg)
 
 # SmartModules for .Net 6 minimal API
 
