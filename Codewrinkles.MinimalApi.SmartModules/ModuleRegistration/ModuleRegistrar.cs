@@ -33,14 +33,14 @@ namespace Codewrinkles.MinimalApi.SmartModules.ModuleRegistration
             var derived = _derivedModules ?? Enumerable.Empty<Type>();
             var distinct = modules.Concat(derived).Distinct();
 
-            RegisterEndpointsFromModuleEnumerable(distinct, app);
+            RegisterEndpointsFromModuleEnumerable(distinct!, app);
 
             return app;
         }
         private void RegisterEndpointsFromModuleEnumerable(IEnumerable<Type> types, WebApplication app)
         
         {
-            foreach (var module in types!)
+            foreach (var module in types)
             {
                 var serviceType = module.UnderlyingSystemType;
                 var method = serviceType.GetMethod("MapEndpointDefinitionsAsync");
