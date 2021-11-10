@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Codewrinkles.MinimalApi.SmartModules.ModuleRegistration;
 
 namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions
 {
+    /// <summary>
+    /// WebApplication extensions to register smart modules
+    /// </summary>
     public static class WebApplicationExtensions
     {
         /// <summary>
@@ -12,7 +15,8 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensio
         /// <returns></returns>
         public static WebApplication UseSmartModules(this WebApplication app)
         {
-            app.MapEndpoints();
+            var registrar = app.Services.GetRequiredService(typeof(ModuleRegistrar)) as ModuleRegistrar;
+            registrar?.MapEndpoints(app);
             return app;
         }
     }

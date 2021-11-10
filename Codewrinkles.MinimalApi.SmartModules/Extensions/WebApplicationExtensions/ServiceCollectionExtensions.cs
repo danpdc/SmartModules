@@ -1,8 +1,12 @@
 ﻿using System;
+using Codewrinkles.MinimalApi.SmartModules.ModuleRegistration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions
 {
+    /// <summary>
+    /// Extension methods to add required SmartModuleServices
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -13,8 +17,19 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensio
         /// <returns></returns>
         public static IServiceCollection AddSmartModules(this IServiceCollection services, Type type)
         {
-            services.AddModulesToDi(type);
-            return services;
+            try
+            {
+                var registrar = new ModuleRegistrar(type);
+                registrar.AddModulesToDi(services);
+                services.AddSingleton(typeof(ModuleRegistrar), (provider) => { return registrar; });
+                return services;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }
