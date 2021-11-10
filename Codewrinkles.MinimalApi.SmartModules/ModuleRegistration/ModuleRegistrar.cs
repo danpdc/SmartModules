@@ -29,11 +29,9 @@ namespace Codewrinkles.MinimalApi.SmartModules.ModuleRegistration
 
         internal WebApplication MapEndpoints(WebApplication app)
         {
-            var modules = _modules!.ToList() ?? new();
-            var derived = _derivedModules!.ToList() ?? new();
-
-            modules.AddRange(derived);
-            var distinct = modules.Distinct().AsEnumerable();
+            var modules = _modules ?? Enumerable.Empty<Type>();
+            var derived = _derivedModules ?? Enumerable.Empty<Type>();
+            var distinct = modules.Concat(derived).Distinct();
 
             RegisterEndpointsFromModuleEnumerable(distinct, app);
 
