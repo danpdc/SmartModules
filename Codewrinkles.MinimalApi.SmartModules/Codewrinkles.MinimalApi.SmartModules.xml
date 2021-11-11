@@ -4,6 +4,11 @@
         <name>Codewrinkles.MinimalApi.SmartModules</name>
     </assembly>
     <members>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"></see>
+            </summary>
+        </member>
         <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapHead(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
             <summary>
             Maps a HEAD request.
@@ -13,7 +18,20 @@
             <param name="handler">The handler responsible to service the request and generate a response</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapOptions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)" -->
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapOptions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Automatically maps an OPTIONS HTTP request
+            </summary>
+            <param name="endpoints"></param>
+            <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
+            <param name="handler">The handler responsible to service the request and generate a response</param>
+            <returns></returns>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.ServiceCollectionExtensions">
+            <summary>
+            Extension methods to add required SmartModuleServices
+            </summary>
+        </member>
         <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.ServiceCollectionExtensions.AddSmartModules(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type)">
             <summary>
             Adds smart module services to the DI container
@@ -22,6 +40,11 @@
             <param name="type">Any type from the assembly where Smart Modules should scan for your modules</param>
             <returns></returns>
         </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.WebApplicationExtensions">
+            <summary>
+            WebApplication extensions to register smart modules
+            </summary>
+        </member>
         <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.WebApplicationExtensions.UseSmartModules(Microsoft.AspNetCore.Builder.WebApplication)">
             <summary>
             Adds all the endpoints discovered in modules end endpoint definitions to the <see cref="T:Microsoft.AspNetCore.Builder.WebApplication"/> pipeline.
@@ -29,6 +52,19 @@
             </summary>
             <param name="app"></param>
             <returns></returns>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.IAsyncModule">
+            <summary>
+            Base interface for async smart module registration
+            </summary>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.IAsyncModule.MapEndpointDefinitionsAsync(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Automatically and asynchronousely registers endpoints in the discovered modules
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> instance where endpoint registrations happen.
+            </param>
+            <returns>Returns back instance of <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> passed in, after all registrations have been applied</returns>
         </member>
         <member name="T:Codewrinkles.MinimalApi.SmartModules.IEndpointDefinition">
             <summary>

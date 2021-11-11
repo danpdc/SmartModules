@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
-
-namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions
+﻿namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions
 {
+    /// <summary>
+    /// Extension methods for <see cref="IEndpointRouteBuilder"></see>
+    /// </summary>
     public static class EndpointRouteBuilderExtensions
     {
         private static readonly string[] HeadVerb = new[] { "HEAD" };
@@ -27,7 +25,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensio
         /// </summary>
         /// <param name="endpoints"></param>
         /// <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
-        /// <param name="handler">The handler responsible to service the request and generate a response<</param>
+        /// <param name="handler">The handler responsible to service the request and generate a response</param>
         /// <returns></returns>
         public static IEndpointConventionBuilder MapOptions(this IEndpointRouteBuilder endpoints, string pattern, Delegate handler)
 

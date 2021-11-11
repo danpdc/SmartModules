@@ -5,12 +5,24 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Sample.Modules
 {
-    public class TestModule : IModule
+    public class TestModule : SmartModule
     {
-        public IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder app)
+        private readonly ILogger<TestModule> _logger;
+        private readonly DummyService _dummyService;
+        public TestModule(ILogger<TestModule> logger, DummyService dummyService)
         {
-            app.MapHead("/api", () => "Response to HEAD method").WithName("Head").WithDisplayName("Sample tests");
-            app.MapOptions("/api",() => "Response to OPTIONS method").WithName("Options").WithDisplayName("Sample tests");
+            _logger = logger;
+            _dummyService = dummyService;
+        }
+        public override IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder app)
+        {
+            app.MapHead("/api", () => "Response to HEAD method")
+                .WithName("Head")
+                .WithDisplayName("Sample tests");
+            _logger.LogInformation("Registered HEAD endpoint");
+            app.MapOptions("/api",() => "Response to OPTIONS method")
+                .WithName("Options")
+                .WithDisplayName("Sample tests");
             return app;
         }
     }
