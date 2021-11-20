@@ -4,12 +4,59 @@
         <name>Codewrinkles.MinimalApi.SmartModules</name>
     </assembly>
     <members>
-        <member name="T:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions">
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions">
             <summary>
-            Extension methods for <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"></see>
+            Extensions methods over the .NET 6 minimal API endoiunt registration methods
+            These smart endpoint methods wrap the .NET minimal API functionality in order to
+            offer a mechanism for looking into the registration process and allowing the SmartModules
+            library to extend the .NET6 base functionality.
             </summary>
         </member>
-        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapHead(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartGet(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Wrapper extensions method for .NET 6 minimal API app.MapGet()
+            Registers and endpoint for HTTP GET, for a specific pattern and providing a handler
+            </summary>
+            <param name="app">The .NET 6 <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/></param>
+            <param name="pattern">A pattern that defines an API route</param>
+            <param name="handler">A handler to be executed each time there is an HTTP cal
+            matchung the HTTP GET method and the provided pattern</param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder"/> containing the registered endpoint</returns>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartPost(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Wrapper extensions method for .NET 6 minimal API app.MapPost()
+            Registers and endpoint for HTTP POST, for a specific pattern and providing a handler
+            </summary>
+            <param name="app">The .NET 6 <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/></param>
+            <param name="pattern">A pattern that defines an API route</param>
+            <param name="handler">A handler to be executed each time there is an HTTP call
+            matchung the HTTP POST method and the provided pattern</param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder"/> containing the registered endpoint</returns>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartPut(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Wrapper extensions method for .NET 6 minimal API app.MapPut()
+            Registers and endpoint for HTTP PUT, for a specific pattern and providing a handler
+            </summary>
+            <param name="app">The .NET 6 <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/></param>
+            <param name="pattern">A pattern that defines an API route</param>
+            <param name="handler">A handler to be executed each time there is an HTTP call
+            matchung the HTTP PUT method and the provided pattern</param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder"/> containing the registered endpoint</returns>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartDelete(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Wrapper extensions method for .NET 6 minimal API app.MapDelete()
+            Registers and endpoint for HTTP DELETE, for a specific pattern and providing a handler
+            </summary>
+            <param name="app">The .NET 6 <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/></param>
+            <param name="pattern">A pattern that defines an API route</param>
+            <param name="handler">A handler to be executed each time there is an HTTP call
+            matchung the HTTP PUT method and the provided pattern</param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder"/> containing the registered endpoint</returns>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartHead(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
             <summary>
             Maps a HEAD request.
             </summary>
@@ -18,11 +65,20 @@
             <param name="handler">The handler responsible to service the request and generate a response</param>
             <returns></returns>
         </member>
-        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions.EndpointRouteBuilderExtensions.MapOptions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartOptions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
             <summary>
             Automatically maps an OPTIONS HTTP request
             </summary>
             <param name="endpoints"></param>
+            <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
+            <param name="handler">The handler responsible to service the request and generate a response</param>
+            <returns></returns>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions.SmartEndpointsExtensions.MapSmartPatch(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Delegate)">
+            <summary>
+            Automatically maps a PATCH HTTP request
+            </summary>
+            <param name="app"></param>
             <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
             <param name="handler">The handler responsible to service the request and generate a response</param>
             <returns></returns>
@@ -83,6 +139,44 @@
             <param name="app">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> instance where endpoint registrations happen.
             </param>
             <returns>Returns back instance of <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> passed in, after all registrations have been applied</returns>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.SmartAsyncModule">
+            <summary>
+            Abstract base class that defines an async SmartModul
+            </summary>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.SmartAsyncModule.MapEndpointDefinitionsAsync(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+                
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.SmartModule">
+            <summary>
+            Abstract base class that defines a smart module
+            </summary>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.SmartModule.MapEndpointDefinitions(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Abstract method meant to automatically register endpoint definitions
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> instance where endpoint registrations happen.
+            </param>
+            <returns>Returns back instance of <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder"/> passed in, after all registrations have been applied</returns>
+        </member>
+        <member name="T:Codewrinkles.MinimalApi.SmartModules.SmartModuleBase">
+            <summary>
+            Abstract class that defines base functionality for all module types
+            </summary>
+        </member>
+        <member name="M:Codewrinkles.MinimalApi.SmartModules.SmartModuleBase.RegisterModuleServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Registers module specific services. Override this method if you want to add your module specific services
+            to your module
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

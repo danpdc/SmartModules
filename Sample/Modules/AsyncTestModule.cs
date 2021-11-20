@@ -1,5 +1,5 @@
 ﻿using Codewrinkles.MinimalApi.SmartModules;
-using Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions;
+using Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions;
 
 namespace Sample.Modules
 {
@@ -12,8 +12,9 @@ namespace Sample.Modules
         }
         public override async Task<IEndpointRouteBuilder> MapEndpointDefinitionsAsync(IEndpointRouteBuilder app)
         {
-            app.MapHead("/api/async", () => "Response to HEAD method").WithName("HeadAsync").WithDisplayName("Sample tests");
-            app.MapOptions("/api/async", () => "Response to OPTIONS method").WithName("OptionsAsync").WithDisplayName("Sample tests");
+            app.MapSmartHead("/api/async", () => "Response to HEAD method").WithName("HeadAsync").WithDisplayName("Sample tests");
+            app.MapSmartOptions("/api/async", () => "Response to OPTIONS method").WithName("OptionsAsync").WithDisplayName("Sample tests");
+            app.MapSmartPatch("/api/smartpatch", () => "Response from smart patch");
             await Task.Delay(100);
             return app;
         }
