@@ -1,4 +1,5 @@
 ﻿using Codewrinkles.MinimalApi.SmartModules;
+using Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensions;
 using Codewrinkles.MinimalApi.SmartModules.Extensions.WebApplicationExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
@@ -16,11 +17,11 @@ namespace Sample.Modules
         }
         public override IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder app)
         {
-            app.MapHead("/api", () => "Response to HEAD method")
+            app.MapSmartHead("/api", () => "Response to HEAD method")
                 .WithName("Head")
                 .WithDisplayName("Sample tests");
             _logger.LogInformation("Registered HEAD endpoint");
-            app.MapOptions("/api",() => "Response to OPTIONS method")
+            app.MapSmartOptions("/api",() => "Response to OPTIONS method")
                 .WithName("Options")
                 .WithDisplayName("Sample tests");
             return app;
