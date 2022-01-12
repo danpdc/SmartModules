@@ -30,8 +30,8 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">A pattern that defines an API route</param>
         /// <param name="handler">A handler to be executed each time there is an HTTP cal
         /// matchung the HTTP GET method and the provided pattern</param>
-        /// <returns>The <see cref="IEndpointConventionBuilder"/> containing the registered endpoint</returns>
-        public static IEndpointConventionBuilder MapSmartGet(this IEndpointRouteBuilder app, 
+        /// <returns>The <see cref="RouteHandlerBuilder"/> containing the registered endpoint</returns>
+        public static RouteHandlerBuilder MapSmartGet(this IEndpointRouteBuilder app, 
             string pattern, Delegate handler)
         {
             return Map(app, pattern, GetVerb, handler);
@@ -45,8 +45,8 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">A pattern that defines an API route</param>
         /// <param name="handler">A handler to be executed each time there is an HTTP call
         /// matchung the HTTP POST method and the provided pattern</param>
-        /// <returns>The <see cref="IEndpointConventionBuilder"/> containing the registered endpoint</returns>
-        public static IEndpointConventionBuilder MapSmartPost(this IEndpointRouteBuilder app, 
+        /// <returns>The <see cref="RouteHandlerBuilder"/> containing the registered endpoint</returns>
+        public static RouteHandlerBuilder MapSmartPost(this IEndpointRouteBuilder app, 
             string pattern, Delegate handler)
         {
             return Map(app, pattern, PostVerb, handler);
@@ -60,8 +60,8 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">A pattern that defines an API route</param>
         /// <param name="handler">A handler to be executed each time there is an HTTP call
         /// matchung the HTTP PUT method and the provided pattern</param>
-        /// <returns>The <see cref="IEndpointConventionBuilder"/> containing the registered endpoint</returns>
-        public static IEndpointConventionBuilder MapSmartPut(this IEndpointRouteBuilder app,
+        /// <returns>The <see cref="RouteHandlerBuilder"/> containing the registered endpoint</returns>
+        public static RouteHandlerBuilder MapSmartPut(this IEndpointRouteBuilder app,
             string pattern, Delegate handler)
         {
             return Map(app, pattern, PutVerb, handler);
@@ -75,8 +75,8 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">A pattern that defines an API route</param>
         /// <param name="handler">A handler to be executed each time there is an HTTP call
         /// matchung the HTTP PUT method and the provided pattern</param>
-        /// <returns>The <see cref="IEndpointConventionBuilder"/> containing the registered endpoint</returns>
-        public static IEndpointConventionBuilder MapSmartDelete(this IEndpointRouteBuilder app,
+        /// <returns>The <see cref="RouteHandlerBuilder"/> containing the registered endpoint</returns>
+        public static RouteHandlerBuilder MapSmartDelete(this IEndpointRouteBuilder app,
             string pattern, Delegate handler)
         {
             return Map(app, pattern, DeleteVerb, handler);
@@ -89,7 +89,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
         /// <param name="handler">The handler responsible to service the request and generate a response</param>
         /// <returns></returns>
-        public static IEndpointConventionBuilder MapSmartHead(this IEndpointRouteBuilder endpoints, string pattern, Delegate handler)
+        public static RouteHandlerBuilder MapSmartHead(this IEndpointRouteBuilder endpoints, string pattern, Delegate handler)
         {
             return Map(endpoints, pattern, HeadVerb, handler);
         }
@@ -101,7 +101,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
         /// <param name="handler">The handler responsible to service the request and generate a response</param>
         /// <returns></returns>
-        public static IEndpointConventionBuilder MapSmartOptions(this IEndpointRouteBuilder endpoints, string pattern, Delegate handler)
+        public static RouteHandlerBuilder MapSmartOptions(this IEndpointRouteBuilder endpoints, string pattern, Delegate handler)
 
         {
             return Map(endpoints, pattern, OptionsVerb, handler);
@@ -114,7 +114,7 @@ namespace Codewrinkles.MinimalApi.SmartModules.Extensions.SmartEndpointsExtensio
         /// <param name="pattern">Pattern that described the desired URL. E.g. "/api/products/{id}"</param>
         /// <param name="handler">The handler responsible to service the request and generate a response</param>
         /// <returns></returns>
-        public static IEndpointConventionBuilder MapSmartPatch(this IEndpointRouteBuilder app,
+        public static RouteHandlerBuilder MapSmartPatch(this IEndpointRouteBuilder app,
             string pattern, Delegate handler)
         {
             return Map(app, pattern, PatchVerb, handler);
