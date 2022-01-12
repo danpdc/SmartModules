@@ -8,9 +8,9 @@ SmartModules is a thin library that helps you to modularize your .NET 6 minimal 
 
 1. Install the Codewrinkles.MinimalApiSmartModules NuGet package
 
-      Package Manager: `Install-Package Codewrinkles.MinimalApi.SmartModules -Version 0.1.0`
+      Package Manager: `Install-Package Codewrinkles.MinimalApi.SmartModules -Version 0.1.3`
   
-      DotNet CLI: `dotnet add package Codewrinkles.MinimalApi.SmartModules --version 0.1.0`
+      DotNet CLI: `dotnet add package Codewrinkles.MinimalApi.SmartModules --version 0.1.3`
   
 2. Create a new .NET 6 minimal API project.In the `Program.cs` file:
       - Add smart module services:
@@ -21,16 +21,16 @@ SmartModules is a thin library that helps you to modularize your .NET 6 minimal 
       ```csharp
       app.UseSmartModules();
       ```
-3. Create a new class that implements `IModule`. Here is where you can register all your module endpoints.Here's an example for such a class that uses MediatR. You can however use regular lambdas in your endpoint registration. Everything that is supported in .NET 6 regarding endpoint registration is also supported by SmartModules.
+3. Create a new class that inherits `SmartModule`. Here is where you can register all your module endpoints.Here's an example for such a class that uses MediatR. You can however use regular lambdas in your endpoint registration. Everything that is supported in .NET 6 regarding endpoint registration is also supported by SmartModules.As part of inherting the SmartModule class you will need to implement the abstract method `public override IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder endpoints)`.
       ```csharp
-      public class AuthorModule : IModule
+      public class AuthorModule : SmartModule
     {
         private readonly ILogger<AuthorModule> _logger;
         public AuthorModule(ILogger<AuthorModule> logger)
         {
             _logger = logger;
         }
-        public IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder endpoints)
+        public override IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder endpoints)
         {
             endpoints.MapGet("/api/authors", async (IMediator mediator) 
                 => await GetAllAuthors(mediator))
@@ -121,6 +121,28 @@ public class BlogsModule : IModule
     }
 ```
 
+## Async modules
+There were some requests for the possibility to add modules in async way. Reason is that there might be cases when you want to perform some async work in the module registration implementation. To achieve this, we have also added the `SmartAsyncModule` base class. Just make sure that you are using this async base class if you need to register smart async modules. 
+
+```csharp
+public class AsyncTestModule : SmartAsyncModule
+    {
+        private readonly DummyService _dummyService;
+        public AsyncTestModule(DummyService dummyService)
+        {
+            _dummyService = dummyService;
+        }
+        public override async Task<IEndpointRouteBuilder> MapEndpointDefinitionsAsync(IEndpointRouteBuilder app)
+        {
+            app.MapSmartHead("/api/async", () => "Response to HEAD method").WithName("HeadAsync").WithDisplayName("Sample tests");
+            app.MapSmartOptions("/api/async", () => "Response to OPTIONS method").WithName("OptionsAsync").WithDisplayName("Sample tests");
+            app.MapSmartPatch("/api/smartpatch", () => "Response from smart patch");
+            await Task.Delay(100);
+            return app;
+        }
+    }
+```
+
 ## Dependency injection
 SmartModules relies on the standard ASP.NET Core DI container. Modules and endpoint definitions are registered as transient services. It's important to note here that even if we'd add them as scoped, all the added services would de facto behave as singletons, as they are constructed during the startup phase of the application. It's in a way very similar to middleware. 
 
@@ -161,6 +183,35 @@ public class TestModule : IModule
         }
     }
 ```
+
+## Smart endpoint registration
+You can use the standard way of registering endpoints that is specific for .NET 6 minimal API. However, I encourage you to use the SmartModule extensions methods that we have created for this purpose. We want to continue developing further features like action filters (which are not supported by default in .NET 6 minimal API) and you'll not be able to use these futurea features if you're not using our provided extension methods.
+
+```csharp
+public override IEndpointRouteBuilder MapEndpointDefinitions(IEndpointRouteBuilder app)
+        {
+            app.MapSmartGet("/api/smart", () => "Return from smart GET")
+                .WithDisplayName("Smart endpoints")
+                .Produces(200)
+                .Produces<string>();
+            app.MapSmartPost("/api/smart", () => "Return from smart POST")
+                .WithDisplayName("Smart endpoints");
+            app.MapSmartPut("/api/smart", () => "Return from smart PUT")
+                .WithDisplayName("Smart endpoints");
+            app.MapSmartDelete("/api/smart", () => "Return from smart DELETE")
+                .WithDisplayName("Smart endpoints");
+            app.MapSmartPatch("/api/smart", () => "Return from smart PATCH")
+                .WithDisplayName("Smart endpoints");
+            app.MapSmartHead("/api/smart", () => "Return from smart HEAD")
+                .WithDisplayName("Smart endpoints");
+            app.MapSmartOptions("/api/smart", () => "Return from smart OPTIONS")
+                .WithDisplayName("Smart endpoints");
+            return app;
+        }
+    }
+```
+
+
 ## Samples
 This is a [getting started](https://github.com/danpdc/cwk.MinimalApis.SmartModules/tree/main/Sample) test application. 
 And here is a more [advanced](https://github.com/danpdc/ThoughtFul) sample that implements more complex modules with endpoint definitions, a vertical slices architecture leveraging the power of CQRS through the MediatR library. 
